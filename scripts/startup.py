@@ -69,7 +69,7 @@ def parse_env(env=os.environ):
             service_name = m.group('service_name')
             service_port = int(m.group('service_port'))
             if service_port != 80:
-                service_port = env.get('%s_REMOTE_PORT' % (service_name))
+                service_port = env.get('%s_BACKEND_PORT' % (service_name))
                 if not service_port:
                     continue
             if service_name in services:
@@ -85,7 +85,7 @@ def parse_env(env=os.environ):
     # find service details
     for service_name, value in services.iteritems():
         path = value['location'] = env.get('%s_PATH' % (service_name))
-        remote_path = value['remote_path'] = env.get('%s_REMOTE_PATH' % (service_name), '/')
+        backend_path = value['backend_path'] = env.get('%s_BACKEND_PATH' % (service_name), '/')
         balancing_type = value['balancing_type'] = env.get('%s_BALANCING_TYPE' % (service_name))
         expose_protocol = value['expose_protocol'] = env.get('%s_EXPOSE_PROTOCOL' % (service_name), 'http')
         hostname = value['host'] = env.get('%s_HOSTNAME' % (service_name))

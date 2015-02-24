@@ -9,8 +9,8 @@ It looks for environment variables in the following formats:
 
 Optional/Conditional environment variables:
 
-    <service-name>_REMOTE_PORT=<remoteport> (optional - default: 80)
-    <service-name>_REMOTE_PATH=<remotepath> (optional - default: /)
+    <service-name>_BACKEND_PORT=<remoteport> (optional - default: 80)
+    <service-name>_BACKEND_PATH=<remotepath> (optional - default: /)
     <service-name>_BALANCING_TYPE=[ip_hash|least_conn] (optional)
     <service-name>_EXPOSE_PROTOCOL=[http|https|both] (optional - default: http)
     <service-name>_HOSTNAME=<vhostname> (required if <service-name>_EXPOSE_PROTOCOL is https or both)
@@ -41,8 +41,8 @@ Example:
     WWW_EXAMPLE_COM_SSL_CERTIFICATE=something.pem
     WWW_EXAMPLE_COM_SSL_CERTIFICATE_KEY=something.key
     TOMCAT_PATH=/javaapp
-    TOMCAT_REMOTE_PORT=8080
-    TOMCAT_REMOTE_PATH=/javaapp
+    TOMCAT_BACKEND_PORT=8080
+    TOMCAT_BACKEND_PATH=/javaapp
 
 Generates (/etc/nginx/sites-enabled/proxy.conf):
 
