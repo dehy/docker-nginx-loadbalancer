@@ -80,16 +80,16 @@ Generates (/etc/nginx/sites-enabled/proxy.conf):
     server {
         listen 443;
         server_name www.example.com;
-    
+
         root html;
         index index.html index.htm;
-    
+
         ssl on;
         ssl_certificate ssl/something.pem;
         ssl_certificate_key ssl/something.key;
-     
+
         ssl_session_timeout 5m;
-    
+
         ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
         ssl_ciphers "HIGH:!aNULL:!MD5 or HIGH:!aNULL:!MD5:!3DES";
         ssl_prefer_server_ciphers on;

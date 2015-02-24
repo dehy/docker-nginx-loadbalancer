@@ -1,7 +1,7 @@
 #!/usr/bin/python
 '''
-This script will be run on start-up to evaluate the Docker link environment 
-variables and automatically generate upstream and location modules for 
+This script will be run on start-up to evaluate the Docker link environment
+variables and automatically generate upstream and location modules for
 reverse-proxying and load-balancing.
 
 See README.md for more information
@@ -23,15 +23,15 @@ env = Environment(
         )
     )
 parser = argparse.ArgumentParser(
-    description='Docker-based Nginx Load Balancer Startup Script', 
+    description='Docker-based Nginx Load Balancer Startup Script',
     formatter_class=argparse.RawTextHelpFormatter)
 parser.add_argument(
-    '-t', 
-    '--test', 
-    action='store', 
-    choices=['conf', 'parse'], 
+    '-t',
+    '--test',
+    action='store',
+    choices=['conf', 'parse'],
     help=textwrap.dedent('''\
-    Test against your environment variables 
+    Test against your environment variables
     without modifying the config files.
         'conf' - Preview the generated Nginx config file's contents.
         'parse' - View a detailed parsing of the environment.
@@ -118,7 +118,7 @@ def parse_env(env=os.environ):
             ssl_certificate = env.get('%s_SSL_CERTIFICATE' % formatted_hostname)
             ssl_certificate_key = env.get('%s_SSL_CERTIFICATE_KEY' % formatted_hostname)
 
-            assert ssl_certificate, 'SSL certificate .pem not provided for https host: %s, please set %s_SSL_CERTIFICATE' % (hostname, formatted_hostname) 
+            assert ssl_certificate, 'SSL certificate .pem not provided for https host: %s, please set %s_SSL_CERTIFICATE' % (hostname, formatted_hostname)
             assert ssl_certificate_key, 'SSL certificate .key not provided for https host: %s, please set %s_SSL_CERTIFICATE_KEY' % (hostname, formatted_hostname)
             assert os.path.isfile(os.path.join('/etc/nginx/ssl/', ssl_certificate)), 'SSL certificate file: %s could not be found for %s' (ssl_certificate, hostname)
             assert os.path.isfile(os.path.join('/etc/nginx/ssl/', ssl_certificate_key)), 'SSL certificate file: %s could not be found for %s' (ssl_certificate_key, hostname)
@@ -164,15 +164,3 @@ if __name__ == "__main__":
             break
 
     p.stdout.close()
-
-
-
-
-
-
-
-
-
-
-
-
