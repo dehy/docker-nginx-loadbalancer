@@ -48,19 +48,19 @@ Generates (/etc/nginx/sites-enabled/proxy.conf):
 
     upstream webapp {
         ip_hash;
-        server 192.168.0.2;    
-        server 192.168.0.3;    
-        server 192.168.0.4;    
+        server 192.168.0.2:80;
+        server 192.168.0.3:80;
+        server 192.168.0.4:80;
     }
 
     upstream api {
-        server 192.168.0.5;
-        server 192.168.0.6;
+        server 192.168.0.5:80;
+        server 192.168.0.6:80;
     }
 
     upstream tomcat {
-        server 192.168.0.7;
-        server 192.168.0.8;
+        server 192.168.0.7:8080;
+        server 192.168.0.8:8080;
     }
 
     server {
@@ -71,7 +71,7 @@ Generates (/etc/nginx/sites-enabled/proxy.conf):
         root /usr/share/nginx/html;
 
         location / {
-            proxy_pass http://webapp:80/;
+            proxy_pass http://webapp/;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
         }
@@ -97,12 +97,12 @@ Generates (/etc/nginx/sites-enabled/proxy.conf):
         root /usr/share/nginx/html;
 
         location / {
-            proxy_pass http://webapp:80/;
+            proxy_pass http://webapp/;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
         }
         location /api/ {
-            proxy_pass http://api:80/;
+            proxy_pass http://api/;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
         }
@@ -115,7 +115,7 @@ Generates (/etc/nginx/sites-enabled/proxy.conf):
         root /usr/share/nginx/html;
 
         location /javaapp {
-            proxy_pass http://tomcat:8080/javaapp;
+            proxy_pass http://tomcat/javaapp;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
         }
